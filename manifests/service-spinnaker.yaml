@@ -15,5 +15,3 @@ spec:
     app: hostname
   sessionAffinity: None
   type: LoadBalancer
-  
-  
