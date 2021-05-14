@@ -5,7 +5,7 @@ metadata:
   labels:
     app: hostname
   name: hostname
-  namespace: '${ parameters.namespace ?: staging }'
+  namespace: '${ parameters.namespace }'
 spec:
   ports:
   - port: 80
