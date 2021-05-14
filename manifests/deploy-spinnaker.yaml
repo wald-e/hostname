@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: '${ parameters.namespace ?: staging }'
+  name: '${ parameters.namespace }'
 spec:
   finalizers:
   - kubernetes
@@ -11,9 +11,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hostname
-  name: '${ parameters.namespace ?: staging }'
+  name: '${ parameters.namespace }'
 spec:
-  replicas: '${ #toInt( parameters.replicas ?: 2) }'
+  replicas: '${ #toInt( parameters.replicas ) }'
   selector:
     matchLabels:
       app: hostname
