@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: '${ parameters.namespace }'
+  name: '${ parameters.namespace ?: staging }'
 spec:
   finalizers:
   - kubernetes
@@ -11,9 +11,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hostname
-  name: '${ parameters.namespace }'
+  name: '${ parameters.namespace ?: staging }'
 spec:
-  replicas: '${ #toInt( parameters.replicas ) }'
+  replicas: '${ #toInt( parameters.replicas ?: 3) }'
   selector:
     matchLabels:
       app: hostname
@@ -30,7 +30,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: jtandi/hostname:v3
+      - image: jtandi/hostname:v1
         imagePullPolicy: Always
         name: hostname
         resources: {}
